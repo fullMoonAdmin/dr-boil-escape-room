@@ -125,7 +125,7 @@ void showNewData() {
           digitalWrite(track05, LOW);
           Serial.println("Track 5 is Playing");
           delay(500);
-          digitalWrite(track01, HIGH);
+          digitalWrite(track05, HIGH);
             }
         if (strcmp(receivedChars, "p06")==0){
           digitalWrite(track06, LOW);
