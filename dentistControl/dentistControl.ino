@@ -17,7 +17,7 @@
  *D3 & A3 = Fish puzzle trigger 
  */
 int baud = 9600;  
-noDelay ambiant1Time(7000);
+noDelay ambiant1Time(6000);
 
 bool triggerPuzzle1 = false; 
 bool triggerAmbiant1 = false;
@@ -36,7 +36,7 @@ bool startDrGiggles = false;
 
  
 
-void setup() {
+ void setup() {
  Serial.begin(baud);
  Serial2.begin(baud);
  pinMode(CONTROLLINO_D0, OUTPUT);
@@ -49,6 +49,7 @@ void setup() {
  pinMode(CONTROLLINO_D7, OUTPUT);
  pinMode(CONTROLLINO_D8, OUTPUT);
 
+ pinMode(CONTROLLINO_D14, OUTPUT); 
  pinMode(CONTROLLINO_D15, OUTPUT); 
  pinMode(CONTROLLINO_D16, OUTPUT); 
  pinMode(CONTROLLINO_D17, OUTPUT); 
@@ -102,7 +103,7 @@ void setup() {
  digitalWrite(CONTROLLINO_D7, HIGH);
  digitalWrite(CONTROLLINO_D8, HIGH);
 
- digitalWrite(CONTROLLINO_D21, HIGH);
+ 
 
  digitalWrite(CONTROLLINO_R0, HIGH);
  digitalWrite(CONTROLLINO_R1, HIGH); 
@@ -174,6 +175,8 @@ void playAmbiant1() {
       digitalWrite(CONTROLLINO_D19, LOW);
       digitalWrite(CONTROLLINO_D16, HIGH);
       digitalWrite(CONTROLLINO_D15, HIGH); 
+      digitalWrite(CONTROLLINO_D14, HIGH); 
+
       Serial2.print("<p02>");  
       triggerSickoMode = true;
       }   
@@ -193,7 +196,8 @@ void playAmbiant1() {
       if (switchSensorValue >= 300 && triggerSwitchPuzzle == false ){
       digitalWrite(CONTROLLINO_R4, LOW);
       Serial2.print("<p09>"); 
-      digitalWrite(CONTROLLINO_D21, LOW);
+      delay(2000);
+      digitalWrite(CONTROLLINO_D21, HIGH);
       triggerSwitchPuzzle = true;   
     }
   }
