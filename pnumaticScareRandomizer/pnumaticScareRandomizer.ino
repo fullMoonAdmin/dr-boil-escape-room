@@ -27,7 +27,12 @@ void loop()
   digitalWrite(cab1, HIGH);
   delay(118);
   digitalWrite(cab1, LOW);  
+  delay(222);
+  digitalWrite(cab1, HIGH);
+  delay(188);
+  digitalWrite(cab1, LOW);
   tileLastFired = false;
+  
   delay(randomFactor);  
   }
   
