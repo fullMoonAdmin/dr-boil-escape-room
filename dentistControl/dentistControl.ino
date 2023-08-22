@@ -48,6 +48,7 @@ bool startDrGiggles = false;
  pinMode(CONTROLLINO_D6, OUTPUT);
  pinMode(CONTROLLINO_D7, OUTPUT);
  pinMode(CONTROLLINO_D8, OUTPUT);
+ pinMode(CONTROLLINO_D9, OUTPUT);
 
  pinMode(CONTROLLINO_D14, OUTPUT); 
  pinMode(CONTROLLINO_D15, OUTPUT); 
@@ -129,9 +130,14 @@ void loop() {
   switchPuzzle();  
     }
   sinkPuzzle();
+  if (!triggerPhonePuzzle){
   phonePuzzle();
+  }
+  
   fluidPuzzle();  
+  if (!triggerFishPuzzle && triggerPhonePuzzle){
   fishPuzzle();
+  }
   clockPuzzle();
   picturePuzzle();
   jarPuzzle();
@@ -161,6 +167,9 @@ void playAmbiant1() {
     if (sensorValue <= 0 && triggerPhonePuzzle == false ){
       Serial2.print("<p03>");
       Serial.println("Phone Puzzle Triggered");
+      digitalWrite(CONTROLLINO_D9, HIGH);
+      delay(50);
+      digitalWrite(CONTROLLINO_D9, LOW);
       digitalWrite(CONTROLLINO_D23, HIGH);
       delay(600);
       digitalWrite(CONTROLLINO_D23, LOW);
